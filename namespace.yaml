@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: expense   #this is name of the Namespace which is creating now
+  labels:
+    environment: dev
+    project: expense

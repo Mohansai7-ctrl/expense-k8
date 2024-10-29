@@ -1,0 +1,49 @@
+
+#below will create mysql replica of 2 worker nodes:
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: mysql
+  namespace: expense
+  labels:
+    app: mysql
+    tier: db
+    project: expense
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql
+      tier: db
+      project: expense
+  template:
+    metadata:
+      name: mysql
+      labels:
+        app: mysql
+        tier: db
+        project: expense
+    spec:
+      containers:
+      - name: mysql
+        image: mohansai7/mysql:v1
+
+---
+
+#below will create service that transfers the requests to Pods in the worker node:
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+  namespace: expense
+spec:
+  selector:
+    app: mysql
+    tier: db
+    project: expense
+  ports:
+  - name: mysql-svc-port
+    protocol: TCP
+    port: 3306
+    targetPort: 3306  #both port(service port) and target port(container ports) should be 3306
+    
