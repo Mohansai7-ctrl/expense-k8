@@ -31,10 +31,12 @@ spec:
 ---
 
 #below will create service that transfers the requests to Pods in the worker node:
+#To connect to this mysql(any other application or pod if wants to connect to mysql, here backend needs to connect to mysql), service to be created as below.
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mysql #name should be same, also in backend, it is provided DB_HOST: mysql
   namespace: expense
 spec:
   selector:
