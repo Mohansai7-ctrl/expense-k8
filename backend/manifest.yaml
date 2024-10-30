@@ -28,7 +28,7 @@ spec:
       project: expense
   template:
     metadata:
-      name: backend
+      #name: backend
       labels:
         app: backend
         tier: app
