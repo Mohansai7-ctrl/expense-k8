@@ -1,7 +1,7 @@
 
 #below will create mysql replica of 2 worker nodes:
 apiVersion: apps/v1
-kind: Pod
+kind: Deployment
 metadata:
   name: mysql
   namespace: expense
