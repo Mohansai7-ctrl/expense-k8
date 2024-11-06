@@ -65,3 +65,11 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 15
+  #for memory utilization metrics, use metrics block instead/unlike targetCPUUtilizationPercentage
+  # metrics:
+  #   - type: Resource
+  #     resource:
+  #       name: memory
+  #       target:
+  #         type: Utilization
+  #         averageUtilization: 80

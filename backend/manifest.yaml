@@ -82,6 +82,17 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 15 #usually in real time projects, this target cpu utilization or threshold is 75%
+  #for memory utilization metric, use metrics block instead/unlike targetCPUUtilizationPercentage
+  # metrics:
+  #   - type: Resource
+  #     resource:
+  #       name: memory
+  #       type: Utilization
+  #       averageUtilization: 80
+
+
+
+
 
 
 
