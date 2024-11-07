@@ -1,3 +1,20 @@
+#1)as HPA is using, 2 things need to be done, i)install metric server and ii)include resources(requests and limits) in the code:
+#installing metric-server:
+# kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+#checking installed or not:
+
+#[ ec2-user@ip-172-31-34-198 ~ ]$ kubectl get pods -n kube-system | grep metrics-server
+#metrics-server-d5865ff47-bnlsh       1/1     Running   0          2m4s
+
+
+#2)Download apache bench to test the application by sending requests loading the application:
+# sudo dnf install httpd-tools -y
+#dnf list installed | grep httpd-tools
+# usage:
+# ab -n 1000 -c 50 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+
+
+
 #it should take the configMap data of DB_HOST: mysql
 apiVersion: v1
 kind: ConfigMap
@@ -53,7 +70,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend  #name should be same as above replicas metadata
+  name: backend  #name should be same as above replicas metadata,This should be backend only, because frontend appliation/pods will try to connect to backend with name as backend
   namespace: expense
 spec:
   selector:
