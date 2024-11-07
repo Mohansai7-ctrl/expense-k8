@@ -49,3 +49,68 @@ spec:
     port: 3306
     targetPort: 3306  #both port(service port) and target port(container ports) should be 3306
     
+
+#commands history:
+#  97  07/11/24 16:24:02 git clone https://github.com/Mohansai7-ctrl/expense-k8.git
+#    98  07/11/24 16:24:06 kubens
+#    99  07/11/24 16:24:12 clear
+#   100  07/11/24 16:24:22 cd expense-k8/
+#   101  07/11/24 16:24:23 ls -la
+#   102  07/11/24 16:24:33 cd mysql/
+#   103  07/11/24 16:24:35 clear
+#   104  07/11/24 16:24:37 ls -la
+#   105  07/11/24 16:30:32 cd
+#   106  07/11/24 16:30:37 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+#   107  07/11/24 16:31:58 kubectl get pods
+#   108  07/11/24 16:32:09 kubectl get pods -n kube-system
+#   109  07/11/24 16:32:24 kubectl get pods -n kube-system | grep metrics-servver
+#   110  07/11/24 16:32:41 kubectl get pods -n kube-system | grep metrics-server
+#   111  07/11/24 16:34:58 cat /etc/os-release
+#   112  07/11/24 16:35:40 sudo dnf install httpd-tools -y
+#   113  07/11/24 16:36:34 dnf list installed | grep apache
+#   114  07/11/24 16:36:40 dnf list installed | grep ab
+#   115  07/11/24 16:36:49 dnf list installed | grep bench
+#   116  07/11/24 16:36:59 dnf list installed | grep httpd
+#   117  07/11/24 16:37:54 clear
+#   118  07/11/24 16:37:59 cd k8-expense-volumes/
+#   119  07/11/24 16:38:01 ls -la
+#   120  07/11/24 16:38:35 cd ../expense-k8/
+#   121  07/11/24 16:38:37 clear
+#   122  07/11/24 16:38:38 ls -la
+#   123  07/11/24 16:38:42 kubens
+#   124  07/11/24 16:38:51 cd mysql/
+#   125  07/11/24 16:39:45 kubectl apply -f manifest.yaml
+#   126  07/11/24 16:39:56 cd ../backend/
+#   127  07/11/24 16:40:03 kubectl apply -f manifest.yaml
+#   128  07/11/24 16:40:16 cd ../frontend/
+#   129  07/11/24 16:40:24 kubectl apply -f manifest.yaml
+#   130  07/11/24 16:43:01 kubectl get pods
+#   131  07/11/24 16:43:56 ab -n 1000 -c 50 -s 60 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com
+#   132  07/11/24 16:44:28 ab -n 1000 -c 50 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com
+#   133  07/11/24 16:44:39 ab -n1000 -c50 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com
+#   134  07/11/24 16:44:52 cd
+#   135  07/11/24 16:44:55 ab -n1000 -c50 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com
+#   136  07/11/24 16:48:15 ab -n 1000 -c 50 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   137  07/11/24 16:49:42 ab -n 5000 -c 500 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   138  07/11/24 16:50:01 ab -n 50000 -c 500 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   139  07/11/24 16:51:11 ab -n 50000 -c 500 -s 60 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   140  07/11/24 16:53:57 ab -n 500000 -c 5000 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   141  07/11/24 16:54:12 ab -n 500000 -c 5000 -s 60 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   142  07/11/24 16:57:42 ps aux | grep ab
+#   143  07/11/24 16:58:41 top
+#   144  07/11/24 16:58:50 ab -n 500000 -c 5000 -s 60 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   145  07/11/24 16:59:01 ab -n 50000 -c 500 -s 60 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   146  07/11/24 17:02:56 ab -n 50000 -c 5000 -s 60 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   147  07/11/24 17:03:07 ab -n 500000 -c 500 -s 60 http://a066cb3d1f5c9440cb250a0085fdca65-1499047333.us-east-1.elb.amazonaws.com:80/
+#   148  07/11/24 17:06:28 cd expense-k8/
+#   149  07/11/24 17:06:30 ls -la
+#   150  07/11/24 17:06:38 cd frontend/
+#   151  07/11/24 17:06:56 kubectl delete -f manifest.yaml
+#   152  07/11/24 17:07:36 cd ../backend/
+#   153  07/11/24 17:07:49 kubectl delete -f manifest.yaml
+#   154  07/11/24 17:08:17 cd ../mysql/
+#   155  07/11/24 17:08:29 kubectl delete -f manifest.yaml
+#   156  07/11/24 17:08:38 ls -la
+#   157  07/11/24 17:08:47 cd
+#   158  07/11/24 17:08:51 cd expense-k8/
+#   159  07/11/24 17:08:52 ls -la
