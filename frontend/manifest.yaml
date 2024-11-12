@@ -104,7 +104,7 @@ spec:
       - name: nginx-conf
         configMap:
           name: frontend
-          - key: nginx.conf
+          - key: nginx.conf   #it will check and get the key name of nginx.conf from configMap from path nginx.conf mentiond from configMap data
             path: nginx.conf
         
 ---
