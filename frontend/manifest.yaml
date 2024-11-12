@@ -1,6 +1,6 @@
 #using configMap as volume for deployment as if nginx.conf is changed instead of changing in docker(if changed in docker, it needs to be rebuild and agian to be deployed), configured as configMap data and used it as volume in configuration code of deployment, so that if any changes occurs, just restart of pods(deleting the pods manually then deployment replicas will take care of creation again) is enough.
 apiVersion: v1
-kind: configMap
+kind: ConfigMap
 metadata:
   name: frontend
   namespace: expense
