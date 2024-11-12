@@ -154,7 +154,7 @@ spec:
     tier: web
     project: expense
   ports:
-  - name: frontend-svc-port
+  - name: frontend
     protocol: TCP
     port: 80
     targetPort: 80
