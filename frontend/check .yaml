@@ -1,11 +1,10 @@
-#using configMap as volume for deployment as if nginx.conf is changed instead of changing in docker(if changed in docker, it needs to be rebuild and agian to be deployed), configured as configMap data and used it as volume in configuration code of deployment, so that if any changes occurs, just restart of pods(deleting the pods manually then deployment replicas will take care of creation again) is enough.
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: frontend
   namespace: expense
 data:
-  nginx.conf: | # | represents multiple lines
+  nginx.conf: | # | represents multi line file
     user www-data;
     worker_processes 4;
     pid /var/run/nginx.pid;
@@ -84,7 +83,7 @@ data:
         location = /50x.html {
             root   /usr/share/nginx/html;
         }
-        
+        # this is as part of nginx configmap
         location /api/ { 
             proxy_pass http://backend:8080/;
         }
@@ -92,7 +91,6 @@ data:
         }
 
     }
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -112,7 +110,6 @@ spec:
       project: expense
   template:
     metadata:
-      name: frontend
       labels:
         app: frontend
         tier: web
@@ -120,32 +117,32 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: mohansai7/frontend:v1
+        image: joindevops/frontend:v1
         resources:
           requests:
             cpu: 100m
             memory: 128Mi
+          # limits is greater than or equal to requests
           limits:
             cpu: 100m
             memory: 128Mi
         volumeMounts:
-        - name: nginx-conf
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
-          readOnly: true
+            - name: nginx-conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
       volumes:
       - name: nginx-conf
         configMap:
           name: frontend
           items:
-            - key: nginx.conf   #it will check and get the key name of nginx.conf from configMap from path nginx.conf mentiond from configMap data
+            - key: nginx.conf
               path: nginx.conf
-        
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: frontend   #name should be same as above replicas creation
+  name: frontend
   namespace: expense
 spec:
   type: LoadBalancer
@@ -154,30 +151,21 @@ spec:
     tier: web
     project: expense
   ports:
-  - name: frontend-svc-port
+  - name: frontend-port
     protocol: TCP
-    port: 80
-    targetPort: 80
-
+    port: 80 # service port
+    targetPort: 80 # container port
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: frontend
-  namespace: expense
+ name: frontend
+ namespace: expense
 spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: frontend
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 15
-  #for memory utilization metrics, use metrics block instead/unlike targetCPUUtilizationPercentage
-  # metrics:
-  #   - type: Resource
-  #     resource:
-  #       name: memory
-  #       target:
-  #         type: Utilization
-  #         averageUtilization: 80
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: frontend
+ minReplicas: 1
+ maxReplicas: 10
+ targetCPUUtilizationPercentage: 15 # usually 75 in real environment
