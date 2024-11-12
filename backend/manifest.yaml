@@ -74,7 +74,7 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 5
         livenessProbe:
-          httpGET:
+          httpGet:
             path: /health   #kubelet will send httpGET request to the path /health on port 8080, if successful status will be 200-399, if failed then 400-5xx, then kubelet will kill the container and restarts it.
             port: 8080
             # httpHeaders:
