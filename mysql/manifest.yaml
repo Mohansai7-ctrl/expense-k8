@@ -27,6 +27,16 @@ spec:
       containers:
       - name: mysql
         image: mohansai7/mysql:v1
+        livenessProbe:   #used to health check
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15 #it will check the health check after 15 seconds from starting the container mysql
+          periodSeconds: 5  #it will check for every 5 seconds
+        readinessProbe:  #used for readiness check so that it will ready to allow the traffic from services to application in the container.
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15
+          periodSeconds: 5
 
 ---
 

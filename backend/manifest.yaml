@@ -51,6 +51,10 @@ spec:
         tier: app
         project: expense
     spec:
+      initContainers:
+      - name: mysql-initcontainers
+        image: busybox:1.28  #basic image to have or download the commands like sh and nslookup
+        command: ['sh', '-c', "until nslookup mysql; do echo waiting for myservice; sleep 2; done"]
       containers:
       - name: backend
         image: mohansai7/backend:v1
@@ -64,6 +68,20 @@ spec:
         envFrom:
         - configMapRef:
             name: backend
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        livenessProbe:
+          httpGET:
+            path: /health   #kubelet will send httpGET request to the path /health on port 8080, if successful status will be 200-399, if failed then 400-5xx, then kubelet will kill the container and restarts it.
+            port: 8080
+            # httpHeaders:
+            # - name:
+            #   value: 
+          initialDelaySeconds: 3
+          periodSeconds: 3
 
 ---
 
