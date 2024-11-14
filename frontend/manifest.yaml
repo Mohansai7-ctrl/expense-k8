@@ -148,7 +148,7 @@ metadata:
   name: frontend   #name should be same as above replicas creation
   namespace: expense
 spec:
-  type: LoadBalancer
+  #type: LoadBalancer   #When TargetGroupBinding used for Ingress ALB, this type LoadBalancer(Classic Load Balancer) to be commented
   selector:
     app: frontend
     tier: web
