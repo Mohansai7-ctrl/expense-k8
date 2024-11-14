@@ -182,7 +182,7 @@ spec:
   #         type: Utilization
   #         averageUtilization: 80
 
-  --- 
+  # --- 
   #creating TargetGroupBinding for terraform-aws-eks alb:
   # apiVersion: elbv2.k8s.aws/v1beta1
   # kind: TargetGroupBinding
