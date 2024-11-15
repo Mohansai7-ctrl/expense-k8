@@ -190,7 +190,7 @@ spec:
     name: frontend
     namespace: expense
   spec:
-    specRef:
+    serviceRef:
       name: frontend
       port: 80
     targetGroupARN: arn:aws:elasticloadbalancing:us-east-1:022499022353:targetgroup/expense-dev/128b13aaa6303e57 #after creation of 60-alb in terraform-aws-eks, we need to give created targetGroup arn here
