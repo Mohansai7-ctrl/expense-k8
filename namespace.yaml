@@ -1,3 +1,5 @@
+# This repo expense-k8 has to be run and the expense website to be up, before creating terraform-aws-eks repo -> 40-eks
+
 apiVersion: v1
 kind: Namespace
 metadata:
